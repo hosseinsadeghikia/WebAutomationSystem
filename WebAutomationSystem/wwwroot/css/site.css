@@ -1,71 +1,73 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 900;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Black.eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Black.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum)_Black.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum)_Black.ttf') format('truetype');
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Bold.eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Medium.eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum)_Medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Light.eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_Light.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum)_Light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum).eot');
+    src: url('../lib/bootstrap/dist/fonts/eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+    url('../lib/bootstrap/dist/fonts/woff2/IRANSansWeb(FaNum).woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+    url('../lib/bootstrap/dist/fonts/woff/IRANSansWeb(FaNum).woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('../lib/bootstrap/dist/fonts/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    font-family: IRANSans,Tahoma;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    font-family: IRANSans,Tahoma;
 }
