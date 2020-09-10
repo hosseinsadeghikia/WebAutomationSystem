@@ -44,6 +44,23 @@ namespace WebAutomationSystem
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
+
+                //Admin
+                endpoints.MapAreaControllerRoute(
+                    "Admin",
+                    "AdminPanel",
+                    "Admin/{controller=UserManager}/{action=Index}/{id?}"
+                );
+
+                //User
+                endpoints.MapAreaControllerRoute(
+                    "User",
+                    "UserPanel",
+                    "User/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                //Default
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Account}/{action=Login}/{id?}");

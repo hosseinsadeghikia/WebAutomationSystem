@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -58402,7 +58402,7 @@ code {
   .scroll.scroll-push .ps__rail-y {
     left: 5px !important; }
   .scroll.ps > .ps__rail-y {
-    width: 4px; }
+    width: 4px;}
     .scroll.ps > .ps__rail-y:hover, .scroll.ps > .ps__rail-y:focus {
       width: 4px; }
     .scroll.ps > .ps__rail-y > .ps__thumb-y {
@@ -61694,20 +61694,22 @@ body {
         font-size: 0.6rem; }
         .aside-menu .menu-nav > .menu-item > .menu-heading .menu-arrow:before,
         .aside-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-          -webkit-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-          font-family: Ki;
-          font-style: normal;
-          font-weight: normal;
-          font-variant: normal;
-          line-height: 1;
-          text-decoration: inherit;
-          text-rendering: optimizeLegibility;
-          text-transform: none;
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
-          font-smoothing: antialiased;
-          content: ""; }
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: Ki;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            line-height: 1;
+            text-decoration: inherit;
+            text-rendering: optimizeLegibility;
+            text-transform: none;
+            transform: rotate(180deg);
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            content: "";
+        }
           [direction="rtl"] .aside-menu .menu-nav > .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
           .aside-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
             content: "" !important; }
@@ -61783,6 +61785,7 @@ body {
             text-decoration: inherit;
             text-rendering: optimizeLegibility;
             text-transform: none;
+            transform: rotate(180deg);
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
