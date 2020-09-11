@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutomationSystem.Infrastructure.DbContexts;
+using WebAutomationSystem.Infrastructure.Entities;
 
 namespace WebAutomationSystem
 {
@@ -18,6 +22,23 @@ namespace WebAutomationSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(
+                option =>
+                    option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                sqlOption =>
+                    sqlOption.MigrationsAssembly("WebAutomationSystem.Infrastructure")));
+
+            services.AddIdentity<ApplicationUsers, ApplicationRoles>(option =>
+                {
+                    option.Password.RequireDigit = false;
+                    option.Password.RequiredLength = 4;
+                    option.Password.RequireLowercase = false;
+                    option.Password.RequireNonAlphanumeric = false;
+                    option.Password.RequireUppercase = false;
+                })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }

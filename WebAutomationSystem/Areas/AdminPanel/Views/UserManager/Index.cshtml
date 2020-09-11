@@ -2,6 +2,191 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!--begin::Card-->
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                لیست کاربران سامانه
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            <a asp-controller="UserManager" asp-action="AddUser" class="btn btn-primary font-weight-bolder">
+                <i class="fa fa-plus"></i>
+                افزودن کاربر جدید
+            </a>
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Search Form-->
+        <div class="mb-7">
+            <div class="row align-items-center">
+                <div class="col-lg-9 col-xl-8">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" class="form-control"
+                                       placeholder="جستجو..."
+                                       id="kt_datatable_search_query" />
+                                <span><i class="flaticon2-search-1 text-muted"></i></span>
+                            </div>
+                        </div>
 
-<h1>Admin</h1>
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="d-flex align-items-center">
+                                <label class="mr-3 mb-0 d-none d-md-block">وضعیت:</label>
+                                <select class="form-control"
+                                        id="kt_datatable_search_status">
+                                    <option value="">All</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Delivered</option>
+                                    <option value="3">Canceled</option>
+                                    <option value="4">Success</option>
+                                    <option value="5">Info</option>
+                                    <option value="6">Danger</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="d-flex align-items-center">
+                                <label class="mr-3 mb-0 d-none d-md-block">نوع:</label>
+                                <select class="form-control" id="kt_datatable_search_type">
+                                    <option value="">All</option>
+                                    <option value="1">Online</option>
+                                    <option value="2">Retail</option>
+                                    <option value="3">Direct</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                    <a href="#" class="btn btn-light-primary px-6 font-weight-bold">
+                        جستجو
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--end::Search Form-->
+        <!--begin: Table-->
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ردیف</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">نام خانوادگی</th>
+                        <th scope="col">شماره تماس</th>
+                        <th scope="col">کد پرسنلی</th>
+                        <th scope="col">نام کاربری</th>
+                        <th scope="col">تصویر</th>
+                        <th scope="col">امضا</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Nick</td>
+                        <td>Stone</td>
+                        <td><span class="label label-inline label-light-primary font-weight-bold">Pending</span></td>
+                        <th scope="row">1</th>
+                        <td>Nick</td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_12.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_12.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td><span class="label label-inline label-light-primary font-weight-bold">Pending</span></td>
+                        <td nowrap="">
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                <i class="la la-list"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                <i class="la la-edit"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Ana</td>
+                        <td>Jacobs</td>
+                        <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
+                        <th scope="row">2</th>
+                        <td>Ana</td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
+                        <td nowrap="">
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                <i class="la la-list"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                <i class="la la-edit"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>Pettis</td>
+                        <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
+                            </div>
+                        </td>
+                        <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
+                        <td nowrap="">
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                <i class="la la-list"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                <i class="la la-edit"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--begin: Table-->
+    </div>
+</div>
+<!--end::Card-->
 
+@section AdminScripts
+{
+    <script src="~/assets/js/pages/crud/ktdatatable/base/html-table.js"></script>
+}

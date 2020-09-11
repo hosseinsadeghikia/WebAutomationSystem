@@ -71,3 +71,7 @@
 body {
     font-family: IRANSans,Tahoma;
 }
+
+.table th, .table td {
+    vertical-align: middle;
+}
