@@ -1,7 +1,254 @@
-﻿
+﻿@model WebAutomationSystem.Infrastructure.DTOs.UsersDto
 @{
     ViewData["Title"] = "AddUser";
 }
+@section CustomStyles
+{
+    <link href="~/assets/css/pages/wizard/wizard-4.rtl.css" rel="stylesheet" />
+}
+<link href="~/PersianDatePicker/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Details-->
+        <div class="d-flex align-items-center flex-wrap mr-2">
+            <!--begin::Title-->
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">ایجاد کاربر جدید</h5>
+            <!--end::Title-->
+            <!--begin::Separator-->
+            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
+            <!--end::Separator-->
+            <!--begin::Search Form-->
+            <div class="d-flex align-items-center" id="kt_subheader_search">
+                <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">مشخصات کاربر را وارد و ارسال کنید </span>
+            </div>
+            <!--end::Search Form-->
+        </div>
+        <!--end::Details-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Button-->
+            <a href="/metronic/demo1/rtl/#.html" class="btn btn-default font-weight-bold btn-sm px-3 font-size-base">بازگشت</a>
+            <!--end::Button-->
+            <!--begin::Dropdown-->
+            <div class="btn-group ml-2">
+                <input type="submit" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ثبت کاربر">
+            </div>
+            <!--end::Dropdown-->
+        </div>
+        <!--end::Toolbar-->
+    </div>
+</div>
+<div class="card-body p-0">
+    <!--begin::Wizard-->
+    <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="first" data-wizard-clickable="true">
+        <!--begin::Card-->
+        <div class="card card-custom card-shadowless rounded-top-0">
+            <!--begin::Body-->
+            <div class="card-body p-0">
+                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                    <div class="col-xl-12 col-xxl-10">
+                        <!--begin::Wizard Form-->
+                        <form class="form fv-plugins-bootstrap fv-plugins-framework" id="kt_form"
+                              asp-controller="UserManager" asp-action="AddUser" method="post" enctype="multipart/form-data">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-9">
+                                    <!--begin::Wizard Step 1-->
+                                    <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                        <h5 class="text-dark font-weight-bold mb-10">مشخصات کاربری :</h5>
+                                        <!--begin::Group-->
+                                        <div class="form-group row align-items-center">
+                                            <label asp-for="ImageUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="image-input image-input-outline" id="kt_user_add_avatar">
+                                                    <div class="image-input-wrapper" style="background-image: url(/assets/media/users/300_23.jpg)"></div>
 
-<h1>AddUser</h1>
+                                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر تصویر">
+                                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                                        <input asp-for="ImageUrl" type="file" accept=".png, .jpg, .jpeg">
+                                                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                                        <input type="hidden" name="profile_avatar_remove" value="0">
+                                                    </label>
+
+                                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="لغو تصویر">
+                                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row align-items-center">
+                                            <label asp-for="SignatureUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="image-input image-input-outline" id="kt_user_add_signature">
+                                                    <div class="image-input-wrapper" style="background-image: url(/assets/media/users/signature.jpg)"></div>
+
+                                                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر امضا">
+                                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                                        <input asp-for="SignatureUrl" type="file" accept=".png, .jpg, .jpeg">
+                                                        <span asp-validation-for="SignatureUrl" class="text-danger"></span>
+                                                        <input type="hidden" name="profile_avatar_remove" value="0">
+                                                    </label>
+
+                                                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="لغو امضا">
+                                                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="FirstName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="FirstName" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="LastName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="LastName" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="PersonalCode" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="PersonalCode" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="PersonalCode" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="NationalCode" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="NationalCode" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="NationalCode" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="PhoneNumber" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="input-group input-group-solid input-group-lg">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+                                                    <input asp-for="PhoneNumber" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr">
+                                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                                </div>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="UserName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="UserName" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="UserName" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Email" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="input-group input-group-solid input-group-lg">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+                                                    <input asp-for="Email" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr">
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </div>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="BirthDate" class="col-xl-3 col-lg-3 col-form-label" for="BirthDate"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div class="input-group input-group-solid input-group-lg">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
+                                                    <input asp-for="BirthDate" id="BirthDate" name="BirthDate" type="text" class="form-control form-control-solid form-control-lg">
+                                                    <span asp-validation-for="BirthDate" class="text-danger" aria-label="BirthDate" aria-describedby="BirthDate"></span>
+                                                </div>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        @*<div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text cursor-pointer" id="date3">Icon</span>
+                                                </div>
+                                                <input type="text" id="inputDate3" class="form-control" aria-label="date3" aria-describedby="date3">
+                                            </div>*@
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Gender" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9 radio-inline">
+                                                <label class="radio radio-success">
+                                                    <input type="radio" asp-for="Gender" value="1" checked="checked">
+                                                    <span></span>مرد
+                                                </label>
+                                                <label class="radio radio-success">
+                                                    <input type="radio" asp-for="Gender" value="2">
+                                                    <span></span>زن
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Address" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <textarea asp-for="Address" class="form-control form-control-solid form-control-lg"></textarea>
+                                                <span asp-validation-for="Address" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Wizard Form-->
+                    </div>
+                </div>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Wizard-->
+</div>
+@section AdminScripts
+{
+    <script src="~/PersianDatePicker/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script>
+        $('#BirthDate').MdPersianDateTimePicker({
+            targetTextSelector: '#BirthDate',
+            trigger: 'click',
+            placement: 'top',
+            dateFormat: 'yyyy/MM/dd',
+            englishNumber: true
+        });
+
+    </script>
+    <script src="~/assets/js/pages/custom/user/add-user.js"></script>
+    <script src="~/assets/js/pages/custom/user/add-signature.js"></script>
+
+}
+
 

@@ -25,7 +25,6 @@
     <Folder Include="Areas\UserPanel\Data\" />
     <Folder Include="Areas\UserPanel\Models\" />
     <Folder Include="wwwroot\assets\js\pages\crud\ktdatatable\advanced\" />
-    <Folder Include="wwwroot\assets\js\pages\custom\user\" />
   </ItemGroup>
 
 </Project>

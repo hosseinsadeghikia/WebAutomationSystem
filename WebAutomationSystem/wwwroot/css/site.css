@@ -75,3 +75,7 @@ body {
 .table th, .table td {
     vertical-align: middle;
 }
+
+.input-group.input-group-solid .input-group-prepend ~ .form-control {
+    padding-right: 10px !important;
+}
