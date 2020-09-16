@@ -60,7 +60,7 @@
                                             <label asp-for="ImageUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="image-input image-input-outline" id="kt_user_add_avatar">
-                                                    <div class="image-input-wrapper" style="background-image: url(/assets/media/users/300_23.jpg)"></div>
+                                                    <div class="image-input-wrapper" style="background-image: url(/upload/userImage/300_23.jpg)"></div>
 
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر تصویر">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
@@ -72,7 +72,10 @@
                                                     <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="لغو تصویر">
                                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                     </span>
+
+                                                    <input type="button" name="userImage" id="userImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadImage();" />
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                         <!--end::Group-->
@@ -81,7 +84,7 @@
                                             <label asp-for="SignatureUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="image-input image-input-outline" id="kt_user_add_signature">
-                                                    <div class="image-input-wrapper" style="background-image: url(/assets/media/users/signature.jpg)"></div>
+                                                    <div class="image-input-wrapper" style="background-image: url(/upload/signatureImage/signature.jpg)"></div>
 
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر امضا">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
@@ -235,6 +238,25 @@
 </div>
 @section AdminScripts
 {
+    <script>
+        var uploadImage = function() {
+            var data = new FormData;
+            var file = $("#ImageUrl").get(0);
+            var files = file.files;
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('ImageUrl', files[i]);
+            }
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadImage","UserManager", new {area = "AdminPanel" })',
+                data: data,
+                contentType: false,
+                processData: false
+            });
+        }
+    </script>
     <script src="~/PersianDatePicker/jquery.md.bootstrap.datetimepicker.js"></script>
     <script>
         $('#BirthDate').MdPersianDateTimePicker({
@@ -244,11 +266,9 @@
             dateFormat: 'yyyy/MM/dd',
             englishNumber: true
         });
-
     </script>
     <script src="~/assets/js/pages/custom/user/add-user.js"></script>
     <script src="~/assets/js/pages/custom/user/add-signature.js"></script>
-
 }
 
 
