@@ -3,12 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WebAutomationSystem.ApplicationCore.Common.ExtensionMethods;
 using WebAutomationSystem.ApplicationCore.Common.Security;
+using WebAutomationSystem.ApplicationCore.Entities;
+using WebAutomationSystem.Infrastructure.Repositories;
 
 namespace WebAutomationSystem.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
     public class UserManagerController : Controller
     {
+        private readonly IGenericRepository<ApplicationUsers> _userRepository;
+
+        public UserManagerController(IGenericRepository<ApplicationUsers> userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {

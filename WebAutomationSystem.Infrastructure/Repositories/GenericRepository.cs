@@ -8,7 +8,7 @@ namespace WebAutomationSystem.Infrastructure.Repositories
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         protected GenericRepository(ApplicationDbContext context)
         {

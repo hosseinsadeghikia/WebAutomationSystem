@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.DbContexts;
+using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.UnitOfWork;
 
 namespace WebAutomationSystem
 {
@@ -41,6 +43,11 @@ namespace WebAutomationSystem
 
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+            services.AddTransient<ApplicationDbContext>();
+            services.AddTransient<IGenericRepository<ApplicationUsers>, UsersRepository>();
+            services.AddTransient<IGenericRepository<ApplicationRoles>, RolesRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
