@@ -21,17 +21,17 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             return View();
         }
 
-        public IActionResult UploadImage(IFormFile imageUrl)
+        public IActionResult UploadImage(IFormFile file, string path)
         {
             var imageName = "";
-            if (imageUrl != null) // یعنی عکس تغییر داده شده بود
+            if (file != null)
             {
-                if (ImageSecurity.ImageValidator(imageUrl))
+                if (ImageSecurity.ImageValidator(file))
                 {
-                    imageName = imageUrl.UploadImage("", "wwwroot/upload/userImage");
+                    imageName = file.UploadImage("", "wwwroot/" + path);
                 }
             }
-            return Json(new { uploaded = true, url = "/upload/userImage/" + imageName });
+            return Json(new { uploaded = true, url = path + imageName });
         }
     }
 }

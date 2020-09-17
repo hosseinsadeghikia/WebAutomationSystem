@@ -57,15 +57,14 @@
                                         <h5 class="text-dark font-weight-bold mb-10">مشخصات کاربری :</h5>
                                         <!--begin::Group-->
                                         <div class="form-group row align-items-center">
-                                            <label asp-for="ImageUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
-                                            <div class="col-lg-9 col-xl-9">
+                                            <label asp-for="ImageUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
+                                            <div class="col-lg-4 col-xl-4">
                                                 <div class="image-input image-input-outline" id="kt_user_add_avatar">
-                                                    <div class="image-input-wrapper" style="background-image: url(/upload/userImage/300_23.jpg)"></div>
-
+                                                    <div class="image-input-wrapper" id="imgUser" style="background-image: url(/upload/userImage/300_23.jpg)"></div>
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر تصویر">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
                                                         <input asp-for="ImageUrl" type="file" accept=".png, .jpg, .jpeg">
-                                                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
                                                         <input type="hidden" name="profile_avatar_remove" value="0">
                                                     </label>
 
@@ -73,16 +72,12 @@
                                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                     </span>
 
-                                                    <input type="button" name="userImage" id="userImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadImage();" />
+                                                    <input type="button" name="userImage" id="userImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadUserImage();" />
                                                 </div>
-                                                
                                             </div>
-                                        </div>
-                                        <!--end::Group-->
-                                        <!--begin::Group-->
-                                        <div class="form-group row align-items-center">
-                                            <label asp-for="SignatureUrl" class="col-xl-3 col-lg-3 col-form-label text-left"></label>
-                                            <div class="col-lg-9 col-xl-9">
+
+                                            <label asp-for="SignatureUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
+                                            <div class="col-lg-4 col-xl-4">
                                                 <div class="image-input image-input-outline" id="kt_user_add_signature">
                                                     <div class="image-input-wrapper" style="background-image: url(/upload/signatureImage/signature.jpg)"></div>
 
@@ -96,7 +91,21 @@
                                                     <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="لغو امضا">
                                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                     </span>
+
+                                                    <input type="button" name="signatureImage" id="signatureImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadSignatureImage();" />
                                                 </div>
+                                            </div>
+
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row align-items-center">
+                                            <div class="col-lg-6 col-xl-6 d-flex justify-content-center">
+                                                <span asp-validation-for="ImageUrl" class="text-danger text-center user-error-message"></span>
+                                            </div>
+
+                                            <div class="col-lg-6 col-xl-6 d-flex justify-content-center">
+                                                <span asp-validation-for="ImageUrl" class="text-danger text-center signature-error-message"></span>
                                             </div>
                                         </div>
                                         <!--end::Group-->
@@ -239,14 +248,16 @@
 @section AdminScripts
 {
     <script>
-        var uploadImage = function() {
+        var uploadUserImage = function() {
             var data = new FormData;
             var file = $("#ImageUrl").get(0);
             var files = file.files;
 
             for (var i = 0; i < files.length; i++) {
-                data.append('ImageUrl', files[i]);
+                data.append('file', files[i]);
             }
+
+            data.append('path', "/upload/userImage/");
 
             $.ajax({
                 type: "post",
@@ -254,10 +265,74 @@
                 data: data,
                 contentType: false,
                 processData: false
+            }).done(function(res) {
+                if (res.uploaded === true) {
+                    $("#imgUser").css('background-image',
+                        "/upload/userImage/" + res.imageName);
+
+                    $(".user-error-message").removeClass("text-danger");
+                    $(".user-error-message").css("color", "green");
+                    $(".user-error-message").text("آپلود تصویر با موفقیت انجام شد");
+                }
+            }).fail(function(res) {
+                if (res.uploaded === false) {
+                    $(".user-error-message").addClass("text-danger");
+                    $(".user-error-message").text("در هنگام آپلود تصویر مشکلی رخ داده است");
+                }
             });
         }
+
     </script>
+
+    <script>
+        var uploadSignatureImage = function() {
+            var data = new FormData;
+            var file = $("#SignatureUrl").get(0);
+            var files = file.files;
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('file', files[i]);
+            }
+
+            data.append('path',"/upload/signatureImage/");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadImage","UserManager", new {area = "AdminPanel" })',
+                data: data,
+                contentType: false,
+                processData: false
+            }).done(function(res) {
+                if (res.uploaded === true) {
+                    $("#imgUser").css('background-image',
+                        "/upload/signatureImage/" + res.imageName);
+
+                    $(".signature-error-message").removeClass("text-danger");
+                    $(".signature-error-message").css("color", "green");
+                    $(".signature-error-message").text("آپلود تصویر با موفقیت انجام شد");
+                }
+            }).fail(function(res) {
+                if (res.uploaded === false) {
+                    $(".signature-error-message").addClass("text-danger");
+                    $(".signature-error-message").text("در هنگام آپلود تصویر مشکلی رخ داده است");
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        $("#UserName").on('keyup',
+            function (event) {
+                var pattern = /^[a-zA-Z0-9_]*$/;
+                if (!pattern.test(event.key)) {
+                    $("#UserName").val("");
+                }
+            });
+    </script>
+
     <script src="~/PersianDatePicker/jquery.md.bootstrap.datetimepicker.js"></script>
+
     <script>
         $('#BirthDate').MdPersianDateTimePicker({
             targetTextSelector: '#BirthDate',
@@ -267,6 +342,7 @@
             englishNumber: true
         });
     </script>
+
     <script src="~/assets/js/pages/custom/user/add-user.js"></script>
     <script src="~/assets/js/pages/custom/user/add-signature.js"></script>
 }
