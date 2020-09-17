@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAutomationSystem.Infrastructure.DTOs
+namespace WebAutomationSystem.ApplicationCore.DTOs
 {
     public class UsersDto
     {

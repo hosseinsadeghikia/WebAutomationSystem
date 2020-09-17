@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using WebAutomationSystem.Infrastructure.Models;
+using WebAutomationSystem.ApplicationCore.Models;
 
 namespace WebAutomationSystem.Controllers
 {

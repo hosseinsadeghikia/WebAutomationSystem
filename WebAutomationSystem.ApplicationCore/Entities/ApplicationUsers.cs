@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
 
-namespace WebAutomationSystem.Infrastructure.Entities
+namespace WebAutomationSystem.ApplicationCore.Entities
 {
     public class ApplicationUsers : IdentityUser<int>
     {

@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\WebAutomationSystem.ApplicationCore\WebAutomationSystem.ApplicationCore.csproj" />
   </ItemGroup>
 
 </Project>

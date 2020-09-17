@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.DbContexts;
-using WebAutomationSystem.Infrastructure.Entities;
 
 namespace WebAutomationSystem
 {

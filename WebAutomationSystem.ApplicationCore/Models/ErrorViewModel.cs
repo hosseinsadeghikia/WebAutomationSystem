@@ -1,4 +1,4 @@
-namespace WebAutomationSystem.Infrastructure.Models
+namespace WebAutomationSystem.ApplicationCore.Models
 {
     public class ErrorViewModel
     {

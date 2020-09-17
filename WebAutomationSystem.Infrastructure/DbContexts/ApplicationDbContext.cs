@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WebAutomationSystem.Infrastructure.Entities;
+using WebAutomationSystem.ApplicationCore.Entities;
 
 namespace WebAutomationSystem.Infrastructure.DbContexts
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUsers,ApplicationRoles,int>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUsers, ApplicationRoles, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
 
         // To Change Table Name and Property Name for Identity
