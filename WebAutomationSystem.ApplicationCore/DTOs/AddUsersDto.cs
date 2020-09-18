@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebAutomationSystem.ApplicationCore.DTOs
 {
-    public class UsersDto
+    public class AddUsersDto
     {
         [Display(Name = "نام")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} را وارد کنید.")]

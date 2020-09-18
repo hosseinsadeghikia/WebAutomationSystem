@@ -41,7 +41,7 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUser(UsersDto model)
+        public async Task<IActionResult> AddUser(AddUsersDto model)
         {
             if (!ModelState.IsValid)
             {
@@ -89,21 +89,84 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("ErrorView", "Home");
             }
         }
 
-        public IActionResult UploadImage(IFormFile file, string path)
+        [HttpGet]
+        public IActionResult EditUser(int userId)
         {
-            var imageName = "";
-            if (file != null)
+            if (userId == 0)
             {
-                if (ImageSecurity.ImageValidator(file))
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+            var user = _userRepository.Get(userId);
+
+            var userMapped = _mapper.Map<EditUsersDto>(user);
+            userMapped.CurrentImgName = user.ImageUrl;
+
+            return View(userMapped);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUser(EditUsersDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var fileName = TempData["currentImgName"].ToString();
+
+            if (model.ImageUrl != null)
+            {
+                if (ImageSecurity.ImageValidator(model.ImageUrl))
                 {
-                    imageName = file.UploadImage("", "wwwroot/" + path);
+                    fileName.DeleteImage("wwwroot/upload/userImage");
+                    model.ImageUrl.UploadImage(fileName, "wwwroot/upload/userImage");
+                }
+                else
+                {
+                    ModelState.AddModelError("ImageUrl", "لطفا یک فایل درست انتخاب کنید.");
+                    return View(model);
                 }
             }
-            return Json(new { uploaded = true, url = path + imageName });
+
+            if (model.SignatureUrl != null)     
+            {
+                if (ImageSecurity.ImageValidator(model.SignatureUrl))
+                {
+                    fileName.DeleteImage("wwwroot/upload/signatureImage");
+                    model.SignatureUrl.UploadImage(fileName, "wwwroot/upload/signatureImage");
+                }
+                else
+                {
+                    ModelState.AddModelError("SignatureUrl", "لطفا یک فایل درست انتخاب کنید.");
+                    return View(model);
+                }
+            }
+
+            var userId = TempData["userId"].ToString();
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            var userMapped = _mapper.Map(model, user);
+            userMapped.Id = int.Parse(TempData["userId"].ToString());
+            userMapped.ImageUrl = fileName;
+            userMapped.SignatureUrl = fileName;
+
+            var res = await _userManager.UpdateAsync(userMapped);
+            
+            if (res.Succeeded)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
         }
     }
 }

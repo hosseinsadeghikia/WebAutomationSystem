@@ -21,5 +21,15 @@ namespace WebAutomationSystem.ApplicationCore.Common.ExtensionMethods
 
             return fileName;
         }
+
+        public static void DeleteImage(this string fileName, string filePath)
+        {
+            var imgPath = Path.Combine(Directory.GetCurrentDirectory(), filePath, fileName);
+
+            if (File.Exists(imgPath))
+            {
+                File.Delete(imgPath);
+            }
+        }
     }
 }

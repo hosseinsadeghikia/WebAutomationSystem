@@ -125,7 +125,7 @@
                             <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
                                 <i class="la la-list"></i>
                             </a>
-                            <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                            <a asp-controller="UserManager" asp-action="EditUser" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
                                 <i class="la la-edit"></i>
                             </a>
                             @if (item.IsActive == 1)

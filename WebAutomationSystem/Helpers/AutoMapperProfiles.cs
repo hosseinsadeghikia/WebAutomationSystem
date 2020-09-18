@@ -8,7 +8,14 @@ namespace WebAutomationSystem.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<ApplicationUsers, UsersDto>().ReverseMap();
+            CreateMap<ApplicationUsers, AddUsersDto>();
+            CreateMap<ApplicationUsers, EditUsersDto>()
+                .ForMember(dest=>dest.ImageUrl,
+                    act=>act.Ignore())
+                .ForMember(dest=>dest.SignatureUrl,
+                    act =>act.Ignore());
+
+            CreateMap<EditUsersDto, ApplicationUsers>();
         }
     }
 }

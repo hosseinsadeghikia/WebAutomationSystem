@@ -1,7 +1,10 @@
-﻿@model WebAutomationSystem.ApplicationCore.DTOs.AddUsersDto
+﻿@model WebAutomationSystem.ApplicationCore.DTOs.EditUsersDto
 @{
-    ViewData["Title"] = "AddUser";
+    ViewData["Title"] = "EditUser";
+    TempData["userId"] = Model.Id;
+    TempData["currentImgName"] = Model.CurrentImgName;
 }
+
 @section CustomStyles
 {
     <link href="~/assets/css/pages/wizard/wizard-4.rtl.css" rel="stylesheet" />
@@ -12,14 +15,14 @@
         <!--begin::Details-->
         <div class="d-flex align-items-center flex-wrap mr-2">
             <!--begin::Title-->
-            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">ایجاد کاربر جدید</h5>
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">ویرایش کاربر</h5>
             <!--end::Title-->
             <!--begin::Separator-->
             <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
             <!--end::Separator-->
             <!--begin::Search Form-->
             <div class="d-flex align-items-center" id="kt_subheader_search">
-                <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">مشخصات کاربر را وارد و ارسال کنید </span>
+                <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">مشخصات کاربر را وارد و ارسال کنید</span>
             </div>
             <!--end::Search Form-->
         </div>
@@ -31,7 +34,7 @@
             <!--end::Button-->
             <!--begin::Dropdown-->
             <div class="btn-group ml-2">
-                <input type="submit" onclick="submitForm()" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ثبت کاربر">
+                <input type="submit" onclick="submitForm()" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ویرایش کاربر">
             </div>
             <!--end::Dropdown-->
         </div>
@@ -49,7 +52,7 @@
                     <div class="col-xl-12 col-xxl-10">
                         <!--begin::Wizard Form-->
                         <form class="form fv-plugins-bootstrap fv-plugins-framework" id="kt_form"
-                              asp-controller="UserManager" asp-action="AddUser" method="post" enctype="multipart/form-data">
+                              asp-controller="UserManager" asp-action="EditUser" method="post" enctype="multipart/form-data">
                             <div class="row justify-content-center">
                                 <div class="col-xl-9">
                                     <!--begin::Wizard Step 1-->
@@ -60,7 +63,7 @@
                                             <label asp-for="ImageUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
                                             <div class="col-lg-4 col-xl-4">
                                                 <div class="image-input image-input-outline" id="kt_user_add_avatar">
-                                                    <div class="image-input-wrapper" id="imgUser" style="background-image: url(/upload/userImage/300_23.jpg)"></div>
+                                                    <div class="image-input-wrapper" id="imgUser" style="background-image: url(/upload/userImage/@Model.CurrentImgName)"></div>
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر تصویر">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
                                                         <input asp-for="ImageUrl" type="file" accept=".png, .jpg, .jpeg">
@@ -78,7 +81,7 @@
                                             <label asp-for="SignatureUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
                                             <div class="col-lg-4 col-xl-4">
                                                 <div class="image-input image-input-outline" id="kt_user_add_signature">
-                                                    <div class="image-input-wrapper" style="background-image: url(/upload/signatureImage/signature.jpg)"></div>
+                                                    <div class="image-input-wrapper" style="background-image: url(/upload/signatureImage/@Model.CurrentImgName)"></div>
 
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر امضا">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
@@ -162,36 +165,6 @@
                                         <!--end::Group-->
                                         <!--begin::Group-->
                                         <div class="form-group row fv-plugins-icon-container align-items-center">
-                                            <label asp-for="UserName" class="col-xl-3 col-lg-3 col-form-label"></label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input asp-for="UserName" class="form-control form-control-solid form-control-lg" type="text">
-                                                <span asp-validation-for="UserName" class="text-danger"></span>
-                                                <div class="fv-plugins-message-container"></div>
-                                            </div>
-                                        </div>
-                                        <!--end::Group-->
-                                        <!--begin::Group-->
-                                        <div class="form-group row fv-plugins-icon-container align-items-center">
-                                            <label asp-for="Password" class="col-xl-3 col-lg-3 col-form-label"></label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input asp-for="Password" class="form-control form-control-solid form-control-lg" type="password">
-                                                <span asp-validation-for="Password" class="text-danger"></span>
-                                                <div class="fv-plugins-message-container"></div>
-                                            </div>
-                                        </div>
-                                        <!--end::Group-->
-                                        <!--begin::Group-->
-                                        <div class="form-group row fv-plugins-icon-container align-items-center">
-                                            <label asp-for="ConfirmPassword" class="col-xl-3 col-lg-3 col-form-label"></label>
-                                            <div class="col-lg-9 col-xl-9">
-                                                <input asp-for="ConfirmPassword" class="form-control form-control-solid form-control-lg" type="password">
-                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                                <div class="fv-plugins-message-container"></div>
-                                            </div>
-                                        </div>
-                                        <!--end::Group-->
-                                        <!--begin::Group-->
-                                        <div class="form-group row fv-plugins-icon-container align-items-center">
                                             <label asp-for="Email" class="col-xl-3 col-lg-3 col-form-label"></label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="input-group input-group-solid input-group-lg">
@@ -216,11 +189,11 @@
                                             </div>
                                         </div>
                                         @*<div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text cursor-pointer" id="date3">Icon</span>
-            </div>
-            <input type="text" id="inputDate3" class="form-control" aria-label="date3" aria-describedby="date3">
-        </div>*@
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text cursor-pointer" id="date3">Icon</span>
+                                                </div>
+                                                <input type="text" id="inputDate3" class="form-control" aria-label="date3" aria-describedby="date3">
+                                            </div>*@
                                         <!--end::Group-->
                                         <!--begin::Group-->
                                         <div class="form-group row fv-plugins-icon-container align-items-center">
@@ -270,80 +243,6 @@
             $("#kt_form").submit();
         }
     </script>
-
-    @*<script>
-        var uploadUserImage = function() {
-            var data = new FormData;
-            var file = $("#ImageUrl").get(0);
-            var files = file.files;
-
-            for (var i = 0; i < files.length; i++) {
-                data.append('file', files[i]);
-            }
-
-            data.append('path', "/upload/userImage/");
-
-            $.ajax({
-                type: "post",
-                url: '@Url.Action("UploadImage","UserManager", new {area = "AdminPanel" })',
-                data: data,
-                contentType: false,
-                processData: false
-            }).done(function(res) {
-                if (res.uploaded === true) {
-                    $("#imgUser").css('background-image',
-                        "/upload/userImage/" + res.imageName);
-
-                    $(".user-error-message").removeClass("text-danger");
-                    $(".user-error-message").css("color", "green");
-                    $(".user-error-message").text("آپلود تصویر با موفقیت انجام شد");
-                }
-            }).fail(function(res) {
-                if (res.uploaded === false) {
-                    $(".user-error-message").addClass("text-danger");
-                    $(".user-error-message").text("در هنگام آپلود تصویر مشکلی رخ داده است");
-                }
-            });
-        }
-
-    </script>
-
-    <script>
-        var uploadSignatureImage = function() {
-            var data = new FormData;
-            var file = $("#SignatureUrl").get(0);
-            var files = file.files;
-
-            for (var i = 0; i < files.length; i++) {
-                data.append('file', files[i]);
-            }
-
-            data.append('path',"/upload/signatureImage/");
-
-            $.ajax({
-                type: "post",
-                url: '@Url.Action("UploadImage","UserManager", new {area = "AdminPanel" })',
-                data: data,
-                contentType: false,
-                processData: false
-            }).done(function(res) {
-                if (res.uploaded === true) {
-                    $("#imgUser").css('background-image',
-                        "/upload/signatureImage/" + res.imageName);
-
-                    $(".signature-error-message").removeClass("text-danger");
-                    $(".signature-error-message").css("color", "green");
-                    $(".signature-error-message").text("آپلود تصویر با موفقیت انجام شد");
-                }
-            }).fail(function(res) {
-                if (res.uploaded === false) {
-                    $(".signature-error-message").addClass("text-danger");
-                    $(".signature-error-message").text("در هنگام آپلود تصویر مشکلی رخ داده است");
-                }
-            });
-        }
-
-    </script>*@
 
     <script>
         $("#UserName").on('keyup',
