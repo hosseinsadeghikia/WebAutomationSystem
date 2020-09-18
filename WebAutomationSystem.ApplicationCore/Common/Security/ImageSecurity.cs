@@ -9,7 +9,7 @@ namespace WebAutomationSystem.ApplicationCore.Common.Security
     {
         public static bool ImageValidator(IFormFile imgFile)
         {
-            if (imgFile.Length > 0)
+            if (imgFile.Length > 0 && imgFile != null)
             {
                 try
                 {

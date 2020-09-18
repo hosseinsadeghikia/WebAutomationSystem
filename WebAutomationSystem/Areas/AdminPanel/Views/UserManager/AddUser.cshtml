@@ -31,7 +31,7 @@
             <!--end::Button-->
             <!--begin::Dropdown-->
             <div class="btn-group ml-2">
-                <input type="submit" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ثبت کاربر">
+                <input type="submit" onclick="submitForm()" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ثبت کاربر">
             </div>
             <!--end::Dropdown-->
         </div>
@@ -72,7 +72,7 @@
                                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                     </span>
 
-                                                    <input type="button" name="userImage" id="userImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadUserImage();" />
+                                                    @* <input type="button" name="userImage" id="userImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadUserImage();" /> *@
                                                 </div>
                                             </div>
 
@@ -92,7 +92,7 @@
                                                         <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                     </span>
 
-                                                    <input type="button" name="signatureImage" id="signatureImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadSignatureImage();" />
+                                                    @* <input type="button" name="signatureImage" id="signatureImage" class="btn btn-block btn-dark" value="آپلود" onclick="uploadSignatureImage();" /> *@
                                                 </div>
                                             </div>
 
@@ -105,7 +105,7 @@
                                             </div>
 
                                             <div class="col-lg-6 col-xl-6 d-flex justify-content-center">
-                                                <span asp-validation-for="ImageUrl" class="text-danger text-center signature-error-message"></span>
+                                                <span asp-validation-for="SignatureUrl" class="text-danger text-center signature-error-message"></span>
                                             </div>
                                         </div>
                                         <!--end::Group-->
@@ -156,8 +156,8 @@
                                                 <div class="input-group input-group-solid input-group-lg">
                                                     <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
                                                     <input asp-for="PhoneNumber" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr">
-                                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                                 </div>
+                                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                                 <div class="fv-plugins-message-container"></div>
                                             </div>
                                         </div>
@@ -174,13 +174,33 @@
                                         <!--end::Group-->
                                         <!--begin::Group-->
                                         <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Password" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="Password" class="form-control form-control-solid form-control-lg" type="password">
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="ConfirmPassword" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="ConfirmPassword" class="form-control form-control-solid form-control-lg" type="password">
+                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
                                             <label asp-for="Email" class="col-xl-3 col-lg-3 col-form-label"></label>
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="input-group input-group-solid input-group-lg">
                                                     <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
                                                     <input asp-for="Email" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr">
-                                                    <span asp-validation-for="Email" class="text-danger"></span>
                                                 </div>
+                                                <span asp-validation-for="Email" class="text-danger"></span>
                                                 <div class="fv-plugins-message-container"></div>
                                             </div>
                                         </div>
@@ -192,17 +212,17 @@
                                                 <div class="input-group input-group-solid input-group-lg">
                                                     <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
                                                     <input asp-for="BirthDate" id="BirthDate" name="BirthDate" type="text" class="form-control form-control-solid form-control-lg">
-                                                    <span asp-validation-for="BirthDate" class="text-danger" aria-label="BirthDate" aria-describedby="BirthDate"></span>
                                                 </div>
+                                                <span asp-validation-for="BirthDate" class="text-danger" aria-label="BirthDate" aria-describedby="BirthDate"></span>
                                                 <div class="fv-plugins-message-container"></div>
                                             </div>
                                         </div>
                                         @*<div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text cursor-pointer" id="date3">Icon</span>
-                                                </div>
-                                                <input type="text" id="inputDate3" class="form-control" aria-label="date3" aria-describedby="date3">
-                                            </div>*@
+            <div class="input-group-prepend">
+                <span class="input-group-text cursor-pointer" id="date3">Icon</span>
+            </div>
+            <input type="text" id="inputDate3" class="form-control" aria-label="date3" aria-describedby="date3">
+        </div>*@
                                         <!--end::Group-->
                                         <!--begin::Group-->
                                         <div class="form-group row fv-plugins-icon-container align-items-center">
@@ -247,7 +267,13 @@
 </div>
 @section AdminScripts
 {
-    <script>
+    <script type="text/javascript">
+        function submitForm() {
+            $("#kt_form").submit();
+        }
+    </script>
+
+    @*<script>
         var uploadUserImage = function() {
             var data = new FormData;
             var file = $("#ImageUrl").get(0);
@@ -319,7 +345,7 @@
             });
         }
 
-    </script>
+    </script>*@
 
     <script>
         $("#UserName").on('keyup',

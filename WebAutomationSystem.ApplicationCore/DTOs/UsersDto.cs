@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace WebAutomationSystem.ApplicationCore.DTOs
 {
@@ -47,10 +48,12 @@ namespace WebAutomationSystem.ApplicationCore.DTOs
         public byte Gender { get; set; }
 
         [Display(Name = "تصویر")]
-        public string ImageUrl { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} را آپلود کنید.")]
+        public IFormFile ImageUrl { get; set; }
 
         [Display(Name = "امضا")]
-        public string SignatureUrl { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} را آپلود کنید.")]
+        public IFormFile SignatureUrl { get; set; }
 
         [Display(Name = "ایمیل")]
         [MaxLength(100, ErrorMessage = "{0} نباید بیشتر از {1} باشد.")]
@@ -61,8 +64,9 @@ namespace WebAutomationSystem.ApplicationCore.DTOs
         public string Email { get; set; }
 
         [Display(Name = "موبایل")]
-        [MaxLength(100, ErrorMessage = "{0} نباید بیشتر از {1} باشد.")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید.")]
+        [MinLength(11, ErrorMessage = "{0} باید 11 رقمی باشد.")]
+        [MaxLength(11, ErrorMessage = "{0} باید 11 رقمی باشد.")]
         [RegularExpression(@"^\(?(09)\)?([0-9]{9})$", ErrorMessage = "لطفا یک {0} معتبر وارد کنید.")]
         public string PhoneNumber { get; set; }
 
@@ -73,5 +77,17 @@ namespace WebAutomationSystem.ApplicationCore.DTOs
         [RegularExpression(@"^[^\\/:*;\.\)\(]+$",
             ErrorMessage = "از کاراکترهای غیر مجاز استفاده نکنید.")]
         public string UserName { get; set; }
+
+        [Display(Name = "رمز عبور")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} را وارد کنید.")]
+        [StringLength(25, MinimumLength = 4, ErrorMessage = "{0} باید حداقل 4 و حداکثر 25 کاراکتر باشد.")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "تکرار رمز عبور")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} را وارد کنید.")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "{0} با رمز عبور همخوانی ندارد.")]
+        public string ConfirmPassword { get; set; }
     }
 }
