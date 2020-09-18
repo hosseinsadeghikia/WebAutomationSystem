@@ -64,7 +64,6 @@
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر تصویر">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
                                                         <input asp-for="ImageUrl" type="file" accept=".png, .jpg, .jpeg">
-
                                                         <input type="hidden" name="profile_avatar_remove" value="0">
                                                     </label>
 
@@ -84,7 +83,6 @@
                                                     <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="تغییر امضا">
                                                         <i class="fa fa-pen icon-sm text-muted"></i>
                                                         <input asp-for="SignatureUrl" type="file" accept=".png, .jpg, .jpeg">
-                                                        <span asp-validation-for="SignatureUrl" class="text-danger"></span>
                                                         <input type="hidden" name="profile_avatar_remove" value="0">
                                                     </label>
 

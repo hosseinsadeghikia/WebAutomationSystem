@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 using WebAutomationSystem.ApplicationCore.Common.ExtensionMethods;
 using WebAutomationSystem.ApplicationCore.Common.Security;
@@ -15,13 +15,15 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
     [Area("AdminPanel")]
     public class UserManagerController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IGenericRepository<ApplicationUsers> _userRepository;
         private readonly UserManager<ApplicationUsers> _userManager;
         public UserManagerController(IGenericRepository<ApplicationUsers> userRepository,
-            UserManager<ApplicationUsers> userManager)
+            UserManager<ApplicationUsers> userManager, IMapper mapper)
         {
             _userRepository = userRepository;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -72,23 +74,10 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
                 return View(model);
             }
 
-            var user = new ApplicationUsers
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                PersonalCode = model.PersonalCode,
-                NationalCode = model.NationalCode,
-                Email = model.Email,
-                UserName = model.UserName,
-                Address = model.Address,
-                BirthDate = model.BirthDate,
-                Gender = model.Gender,
-                RegisterDate = DateTime.Now,
-                ImageUrl = fileName,
-                SignatureUrl = fileName,
-                IsActive = 1,
-                PhoneNumber = model.PhoneNumber
-            };
+            var user = _mapper.Map<ApplicationUsers>(model);
+            user.ImageUrl = fileName;
+            user.SignatureUrl = fileName;
+            user.RegisterDate = DateTime.Now;
 
             var res = await _userManager.CreateAsync(user, model.Password);
 
