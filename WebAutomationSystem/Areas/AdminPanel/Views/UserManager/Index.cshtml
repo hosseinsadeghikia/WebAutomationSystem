@@ -1,6 +1,7 @@
-﻿
+﻿@model IEnumerable<WebAutomationSystem.ApplicationCore.Entities.ApplicationUsers>
 @{
     ViewData["Title"] = "Index";
+    int counter = 1;
 }
 <!--begin::Card-->
 <div class="card card-custom">
@@ -88,96 +89,121 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Nick</td>
-                        <td>Stone</td>
-                        <td><span class="label label-inline label-light-primary font-weight-bold">Pending</span></td>
-                        <th scope="row">1</th>
-                        <td>Nick</td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_12.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_12.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td><span class="label label-inline label-light-primary font-weight-bold">Pending</span></td>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@counter</th>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.PersonalCode</td>
+                            <td>@item.UserName</td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/upload/userImage/@item.ImageUrl" alt="تصویر کاربر">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/upload/signatureImage/@item.SignatureUrl" alt="امضا کاربر">
+                                </div>
+                            </td>
+                            @if (item.IsActive == 1)
+                            {
+                                <td>
+                                    <span class="label label-inline label-light-success font-weight-bold">فعال</span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="label label-inline label-light-danger font-weight-bold">غیر فعال</span>
+                                </td>
+
+                            }
                         <td nowrap="">
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                            <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
                                 <i class="la la-list"></i>
                             </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                            <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
                                 <i class="la la-edit"></i>
                             </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                <i class="la la-trash"></i>
-                            </a>
+                            @if (item.IsActive == 1)
+                            {
+                                <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="غیر فعال">
+                                    <i class="la la-user-lock"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                    <i class="la la-user-check"></i>
+                                </a>
+                            }
                         </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Ana</td>
-                        <td>Jacobs</td>
-                        <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
-                        <th scope="row">2</th>
-                        <td>Ana</td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
-                        <td nowrap="">
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
-                                <i class="la la-list"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
-                                <i class="la la-edit"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                <i class="la la-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>Pettis</td>
-                        <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
-                            </div>
-                        </td>
-                        <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
-                        <td nowrap="">
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
-                                <i class="la la-list"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
-                                <i class="la la-edit"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                <i class="la la-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                        </tr>
+                        counter++;
+                    }
+                    @*<tr>
+                            <th scope="row">2</th>
+                            <td>Ana</td>
+                            <td>Jacobs</td>
+                            <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
+                            <th scope="row">2</th>
+                            <td>Ana</td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
+                                </div>
+                            </td>
+                            <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
+                            <td nowrap="">
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                    <i class="la la-list"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                    <i class="la la-edit"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                    <i class="la la-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>Pettis</td>
+                            <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
+                                </div>
+                            </td>
+                            <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
+                            <td nowrap="">
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                    <i class="la la-list"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                    <i class="la la-edit"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                    <i class="la la-trash"></i>
+                                </a>
+                            </td>
+                        </tr>*@
                 </tbody>
             </table>
         </div>

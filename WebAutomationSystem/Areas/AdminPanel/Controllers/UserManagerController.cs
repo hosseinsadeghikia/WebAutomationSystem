@@ -29,7 +29,8 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var model = _userRepository.All();
+            return View(model);
         }
 
         [HttpGet]
@@ -78,6 +79,7 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             user.ImageUrl = fileName;
             user.SignatureUrl = fileName;
             user.RegisterDate = DateTime.Now;
+            user.IsActive = 1;
 
             var res = await _userManager.CreateAsync(user, model.Password);
 
