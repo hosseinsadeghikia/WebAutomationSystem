@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace WebAutomationSystem.Infrastructure.Repositories
+namespace WebAutomationSystem.Infrastructure.Repositories.Generic
 {
     public interface IGenericRepository<T>
     {

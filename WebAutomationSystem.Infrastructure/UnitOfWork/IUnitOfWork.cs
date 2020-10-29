@@ -1,5 +1,6 @@
 ﻿using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.Repositories.Generic;
 
 namespace WebAutomationSystem.Infrastructure.UnitOfWork
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using WebAutomationSystem.Infrastructure.DbContexts;
 
-namespace WebAutomationSystem.Infrastructure.Repositories
+namespace WebAutomationSystem.Infrastructure.Repositories.Generic
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {

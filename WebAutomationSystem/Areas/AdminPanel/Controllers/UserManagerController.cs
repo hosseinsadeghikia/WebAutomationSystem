@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using WebAutomationSystem.ApplicationCore.Common.ExtensionMethods;
 using WebAutomationSystem.ApplicationCore.Common.Security;
 using WebAutomationSystem.ApplicationCore.DTOs;
+using WebAutomationSystem.ApplicationCore.DTOs.Users;
 using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.Repositories.Generic;
 
 namespace WebAutomationSystem.Areas.AdminPanel.Controllers
 {

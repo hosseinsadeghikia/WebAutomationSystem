@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting;
 using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.DbContexts;
 using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.Repositories.Generic;
+using WebAutomationSystem.Infrastructure.Repositories.Roles;
+using WebAutomationSystem.Infrastructure.Repositories.Users;
 using WebAutomationSystem.Infrastructure.UnitOfWork;
 
 namespace WebAutomationSystem

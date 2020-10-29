@@ -1,6 +1,9 @@
 ﻿using WebAutomationSystem.ApplicationCore.Entities;
 using WebAutomationSystem.Infrastructure.DbContexts;
 using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.Repositories.Generic;
+using WebAutomationSystem.Infrastructure.Repositories.Roles;
+using WebAutomationSystem.Infrastructure.Repositories.Users;
 
 namespace WebAutomationSystem.Infrastructure.UnitOfWork
 {
