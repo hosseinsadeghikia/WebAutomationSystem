@@ -1,4 +1,6 @@
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAutomationSystem.ApplicationCore.Entities;
+using WebAutomationSystem.ApplicationCore.DTOs.Users;
+using WebAutomationSystem.ApplicationCore.Entities.Roles;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.DbContexts;
-using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.Infrastructure.FluentConfig.FluentValidationDto;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
 using WebAutomationSystem.Infrastructure.Repositories.Roles;
 using WebAutomationSystem.Infrastructure.Repositories.Users;
@@ -46,13 +50,20 @@ namespace WebAutomationSystem
                 .AddDefaultTokenProviders();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
-            services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews().AddNewtonsoftJson()
+                .AddRazorRuntimeCompilation().AddFluentValidation();
             services.AddRazorPages();
 
             services.AddTransient<ApplicationDbContext>();
             services.AddTransient<IGenericRepository<ApplicationUsers>, UsersRepository>();
             services.AddTransient<IGenericRepository<ApplicationRoles>, RolesRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            #region Validator
+
+            services.AddTransient<IValidator<AddUsersDto>, FluentAddUsersDto>();
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

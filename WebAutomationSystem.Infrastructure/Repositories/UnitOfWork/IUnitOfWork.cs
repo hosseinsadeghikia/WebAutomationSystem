@@ -1,5 +1,5 @@
-﻿using WebAutomationSystem.ApplicationCore.Entities;
-using WebAutomationSystem.Infrastructure.Repositories;
+﻿using WebAutomationSystem.ApplicationCore.Entities.Roles;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
 
 namespace WebAutomationSystem.Infrastructure.UnitOfWork

@@ -10,8 +10,8 @@ using WebAutomationSystem.Infrastructure.DbContexts;
 namespace WebAutomationSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200911080601_AddFieldToUser")]
-    partial class AddFieldToUser
+    [Migration("20210321133132_AddDatabaseAndFluentValidationAndFluentConfig")]
+    partial class AddDatabaseAndFluentValidationAndFluentConfig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,7 +122,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WebAutomationSystem.Infrastructure.Entities.ApplicationRoles", b =>
+            modelBuilder.Entity("WebAutomationSystem.ApplicationCore.Entities.Roles.ApplicationRoles", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,7 +151,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("WebAutomationSystem.Infrastructure.Entities.ApplicationUsers", b =>
+            modelBuilder.Entity("WebAutomationSystem.ApplicationCore.Entities.Users.ApplicationUsers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,7 +165,8 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BirthDate")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -179,7 +180,8 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<byte>("Gender")
                         .HasColumnType("tinyint");
@@ -191,7 +193,8 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -200,7 +203,8 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NationalCode")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -214,7 +218,8 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PersonalCode")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -253,7 +258,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationRoles", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Roles.ApplicationRoles", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -262,7 +267,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationUsers", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Users.ApplicationUsers", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -271,7 +276,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationUsers", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Users.ApplicationUsers", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -280,13 +285,13 @@ namespace WebAutomationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationRoles", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Roles.ApplicationRoles", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationUsers", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Users.ApplicationUsers", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -295,7 +300,7 @@ namespace WebAutomationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("WebAutomationSystem.Infrastructure.Entities.ApplicationUsers", null)
+                    b.HasOne("WebAutomationSystem.ApplicationCore.Entities.Users.ApplicationUsers", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

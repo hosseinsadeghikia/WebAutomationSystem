@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAutomationSystem.Infrastructure.Migrations
 {
-    public partial class AddDatabase : Migration
+    public partial class AddDatabaseAndFluentValidationAndFluentConfig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,18 @@ namespace WebAutomationSystem.Infrastructure.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 256, nullable: true),
+                    LastName = table.Column<string>(maxLength: 256, nullable: true),
+                    PersonalCode = table.Column<string>(maxLength: 10, nullable: true),
+                    NationalCode = table.Column<string>(maxLength: 10, nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    BirthDate = table.Column<string>(maxLength: 20, nullable: true),
+                    Gender = table.Column<byte>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    SignatureUrl = table.Column<string>(nullable: true),
+                    IsActive = table.Column<byte>(nullable: false),
+                    RegisterDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

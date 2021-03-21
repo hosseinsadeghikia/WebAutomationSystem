@@ -13,4 +13,8 @@
     <ProjectReference Include="..\WebAutomationSystem.ApplicationCore\WebAutomationSystem.ApplicationCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

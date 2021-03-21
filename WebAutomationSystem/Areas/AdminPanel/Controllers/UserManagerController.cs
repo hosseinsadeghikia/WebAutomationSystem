@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using WebAutomationSystem.ApplicationCore.Common.ExtensionMethods;
 using WebAutomationSystem.ApplicationCore.Common.Security;
-using WebAutomationSystem.ApplicationCore.DTOs;
 using WebAutomationSystem.ApplicationCore.DTOs.Users;
-using WebAutomationSystem.ApplicationCore.Entities;
-using WebAutomationSystem.Infrastructure.Repositories;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
 
 namespace WebAutomationSystem.Areas.AdminPanel.Controllers
@@ -136,7 +133,7 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
                 }
             }
 
-            if (model.SignatureUrl != null)     
+            if (model.SignatureUrl != null)
             {
                 if (ImageSecurity.ImageValidator(model.SignatureUrl))
                 {
@@ -160,7 +157,7 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             userMapped.SignatureUrl = fileName;
 
             var res = await _userManager.UpdateAsync(userMapped);
-            
+
             if (res.Succeeded)
             {
                 return RedirectToAction(nameof(Index));

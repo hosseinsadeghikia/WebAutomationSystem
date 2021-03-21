@@ -1,4 +1,4 @@
-﻿using WebAutomationSystem.ApplicationCore.Entities;
+﻿using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.DbContexts;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
 

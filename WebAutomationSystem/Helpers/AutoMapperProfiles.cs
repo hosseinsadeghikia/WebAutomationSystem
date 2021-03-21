@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using WebAutomationSystem.ApplicationCore.DTOs.Users;
-using WebAutomationSystem.ApplicationCore.Entities;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
 
 namespace WebAutomationSystem.Helpers
 {
@@ -8,7 +8,7 @@ namespace WebAutomationSystem.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<ApplicationUsers, AddUsersDto>();
+            CreateMap<ApplicationUsers, AddUsersDto>().ReverseMap();
             CreateMap<ApplicationUsers, EditUsersDto>()
                 .ForMember(dest => dest.ImageUrl,
                     act => act.Ignore())

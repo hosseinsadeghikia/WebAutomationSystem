@@ -1,6 +1,6 @@
-﻿using WebAutomationSystem.ApplicationCore.Entities;
+﻿using WebAutomationSystem.ApplicationCore.Entities.Roles;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.DbContexts;
-using WebAutomationSystem.Infrastructure.Repositories;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
 using WebAutomationSystem.Infrastructure.Repositories.Roles;
 using WebAutomationSystem.Infrastructure.Repositories.Users;

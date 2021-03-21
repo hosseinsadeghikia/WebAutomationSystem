@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WebAutomationSystem.ApplicationCore.Entities;
+using WebAutomationSystem.ApplicationCore.Entities.Roles;
+using WebAutomationSystem.ApplicationCore.Entities.Users;
+using WebAutomationSystem.Infrastructure.FluentConfig.FluentEntities;
 
 namespace WebAutomationSystem.Infrastructure.DbContexts
 {
@@ -21,5 +23,12 @@ namespace WebAutomationSystem.Infrastructure.DbContexts
         //        entity.Property(u => u.Id).HasColumnName("UserId");
         //    });
         //}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Fluent API Configurations goes in here
+            modelBuilder.ApplyConfiguration(new FluentApplicationUser());
+        }
     }
 }
