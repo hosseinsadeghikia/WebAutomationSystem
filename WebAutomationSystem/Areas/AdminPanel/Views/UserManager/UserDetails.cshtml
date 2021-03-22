@@ -1,0 +1,196 @@
+﻿@model WebAutomationSystem.ApplicationCore.DTOs.Users.UserDetailsDto
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Details-->
+        <div class="d-flex align-items-center flex-wrap mr-2">
+            <!--begin::Title-->
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">مشخصات کاربر</h5>
+            <!--end::Title-->
+            <!--begin::Separator-->
+            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
+            <!--end::Separator-->
+            <!--begin::Search Form-->
+            <div class="d-flex align-items-center" id="kt_subheader_search">
+                <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">@Model.FirstName @Model.LastName</span>
+            </div>
+            <!--end::Search Form-->
+        </div>
+        <!--end::Details-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Button-->
+            <a asp-controller="UserManager" asp-action="Index" class="btn btn-default font-weight-bold btn-sm px-3 font-size-base">بازگشت</a>
+            <!--end::Button-->
+            <div class="btn-group ml-2">
+                <a href="#" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base">چاپ <i class="flaticon2-print"></i></a>
+            </div>
+        </div>
+        <!--end::Toolbar-->
+    </div>
+</div>
+<div class="card-body p-0">
+    <!--begin::Wizard-->
+    <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="first" data-wizard-clickable="true">
+        <!--begin::Card-->
+        <div class="card card-custom card-shadowless rounded-top-0">
+            <!--begin::Body-->
+            <div class="card-body p-0">
+                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                    <div class="col-xl-12 col-xxl-10">
+
+                        <div class="row justify-content-center">
+                            <div class="col-xl-9">
+                                <!--begin::Wizard Step 1-->
+                                <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                    <h5 class="text-dark font-weight-bold mb-10">مشخصات کاربری :</h5>
+                                    <!--begin::Group-->
+                                    <div class="form-group row align-items-center">
+                                        <label asp-for="ImageUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
+                                        <div class="col-lg-4 col-xl-4">
+                                            <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
+                                                <div class="symbol-label" style="background-image:url(/upload/userImage/@Model.ImageUrl)"></div>
+                                                <i class="symbol-badge bg-success"></i>
+                                            </div>
+                                        </div>
+
+                                        <label asp-for="SignatureUrl" class="col-xl-2 col-lg-2 col-form-label text-left"></label>
+                                        <div class="col-lg-4 col-xl-4">
+                                            <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
+                                                <div class="symbol-label" style="background-image:url(/upload/signatureImage/@Model.ImageUrl)"></div>
+                                                <i class="symbol-badge bg-success"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="FirstName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <input asp-for="FirstName" class="form-control form-control-solid form-control-lg" type="text" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="LastName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <input asp-for="LastName" class="form-control form-control-solid form-control-lg" type="text" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="UserName" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <input asp-for="UserName" class="form-control form-control-solid form-control-lg" type="text" style="direction: ltr" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="NationalCode" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <input asp-for="NationalCode" class="form-control form-control-solid form-control-lg" type="text" style="direction: ltr" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="PersonalCode" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <input asp-for="PersonalCode" class="form-control form-control-solid form-control-lg" type="text" style="direction: ltr" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="PhoneNumber" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <div class="input-group input-group-solid input-group-lg">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+                                                <input asp-for="PhoneNumber" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="Email" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <div class="input-group input-group-solid input-group-lg">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+                                                <input asp-for="Email" type="text" class="form-control form-control-solid form-control-lg" style="direction: ltr" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="BirthDate" class="col-xl-3 col-lg-3 col-form-label" for="BirthDate"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <div class="input-group input-group-solid input-group-lg">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
+                                                <input asp-for="BirthDate" id="BirthDate" name="BirthDate" type="text" class="form-control form-control-solid form-control-lg" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="IsActive" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            @if (Model.IsActive == 1)
+                                            {
+                                                <span class="label label-inline label-xl label-light-success font-weight-bold">فعال</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-inline label-xl label-light-danger font-weight-bold">غیر فعال</span>
+
+                                            }
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="Gender" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9 radio-inline">
+                                            <label class="radio radio-success">
+                                                <input type="radio" asp-for="Gender" value="1" checked="checked" disabled="disabled">
+                                                <span></span>مرد
+                                            </label>
+                                            <label class="radio radio-success">
+                                                <input type="radio" asp-for="Gender" value="2" disabled="disabled">
+                                                <span></span>زن
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+                                    <!--begin::Group-->
+                                    <div class="form-group row fv-plugins-icon-container align-items-center">
+                                        <label asp-for="Address" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-9">
+                                            <textarea asp-for="Address" class="form-control form-control-solid form-control-lg" disabled="disabled"></textarea>
+                                        </div>
+                                    </div>
+                                    <!--end::Group-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Wizard-->
+</div>
+

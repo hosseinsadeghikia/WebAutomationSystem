@@ -16,6 +16,7 @@ namespace WebAutomationSystem.Helpers
                     act => act.Ignore());
 
             CreateMap<EditUsersDto, ApplicationUsers>();
+            CreateMap<UserDetailsDto, ApplicationUsers>().ReverseMap();
         }
     }
 }

@@ -167,5 +167,20 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
                 return RedirectToAction("ErrorView", "Home");
             }
         }
+
+        [HttpGet]
+        public IActionResult UserDetails(int userId)
+        {
+            if (userId == 0)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+            var user = _userRepository.Get(userId);
+
+            var userMapped = _mapper.Map<UserDetailsDto>(user);
+
+            return View(userMapped);
+        }
     }
 }
