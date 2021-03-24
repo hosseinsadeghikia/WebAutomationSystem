@@ -1,0 +1,45 @@
+﻿@model WebAutomationSystem.ApplicationCore.DTOs.Users.UserDetailsDto
+
+<form asp-controller="UserManager" asp-action="ChangeUserStatus" asp-route-userId="@Model.Id" asp-route-isActive="@Model.IsActive" method="post">
+    <!--begin::Card-->
+    <div class="card card-custom @ViewBag.BackgroundColor">
+        <div class="card-header border-0">
+            <div class="card-title">
+                <span class="card-icon">
+                    <i class="flaticon2-chat-1 text-white"></i>
+                </span>
+                <h3 class="card-label text-white">
+                    @ViewBag.Title
+                </h3>
+            </div>
+        </div>
+        <div class="separator separator-solid separator-white opacity-20"></div>
+        @if (Model.IsActive == 1)
+        {
+            <div class="card-body text-white">
+                آیا از @ViewBag.Title اکانت کاربر با نام
+                <span class="text-white font-size-h4" id="kt_subheader_total">@Model.FirstName @Model.LastName</span>
+                مطمئن هستیذ؟
+            </div>
+        }
+        else
+        {
+            <div class="card-body text-white">
+                آیا از @ViewBag.Title اکانت کاربر با نام
+                <span class="text-white font-size-h4" id="kt_subheader_total">@Model.FirstName @Model.LastName</span>
+                مطمئن هستیذ؟
+            </div>
+        }
+        <div class="card-footer d-flex justify-content-end bg-warning">
+            <!--begin::Button-->
+            <a asp-controller="UserManager" asp-action="Index" class="btn btn-default font-weight-bold btn-sm px-3 font-size-base">بازگشت</a>
+            <!--end::Button-->
+            <!--begin::Dropdown-->
+            <div class="btn-group ml-2">
+                <input type="submit" class="btn @ViewBag.ButtonName font-weight-bold btn-sm px-3 font-size-base" value="تایید">
+            </div>
+            <!--end::Dropdown-->
+        </div>
+    </div>
+    <!--end::Card-->
+</form>

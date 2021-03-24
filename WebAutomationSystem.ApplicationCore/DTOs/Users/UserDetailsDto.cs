@@ -9,6 +9,8 @@ namespace WebAutomationSystem.ApplicationCore.DTOs.Users
 {
     public class UserDetailsDto
     {
+        public int Id { get; set; }
+
         [Display(Name = "نام")]
         public string FirstName { get; set; }
 

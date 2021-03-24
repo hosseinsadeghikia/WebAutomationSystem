@@ -1,11 +1,13 @@
-﻿using WebAutomationSystem.ApplicationCore.Entities.Roles;
+﻿using WebAutomationSystem.ApplicationCore.Entities.Jobs;
+using WebAutomationSystem.ApplicationCore.Entities.Roles;
 using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.DbContexts;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
+using WebAutomationSystem.Infrastructure.Repositories.Jobs;
 using WebAutomationSystem.Infrastructure.Repositories.Roles;
 using WebAutomationSystem.Infrastructure.Repositories.Users;
 
-namespace WebAutomationSystem.Infrastructure.UnitOfWork
+namespace WebAutomationSystem.Infrastructure.Repositories.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -41,6 +43,20 @@ namespace WebAutomationSystem.Infrastructure.UnitOfWork
                 }
 
                 return _roleRepository;
+            }
+        }
+
+        private IGenericRepository<JobsChart> _jobsChartRepository;
+        public IGenericRepository<JobsChart> JobsChartRepository
+        {
+            get
+            {
+                if (_jobsChartRepository == null)
+                {
+                    _jobsChartRepository = new JobsChartRepository(_context);
+                }
+
+                return _jobsChartRepository;
             }
         }
 

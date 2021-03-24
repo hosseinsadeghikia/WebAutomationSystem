@@ -1,0 +1,102 @@
+﻿@model WebAutomationSystem.ApplicationCore.DTOs.JobsChart.EditJobsChartDto
+@{
+    ViewData["Title"] = "UpdateJobsChart";
+}
+
+<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Details-->
+        <div class="d-flex align-items-center flex-wrap mr-2">
+            <!--begin::Title-->
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">ایجاد شغل جدید</h5>
+            <!--end::Title-->
+            <!--begin::Separator-->
+            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
+            <!--end::Separator-->
+            <!--begin::Search Form-->
+            <div class="d-flex align-items-center" id="kt_subheader_search">
+                <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">فرم ویرایش شغل </span>
+            </div>
+            <!--end::Search Form-->
+        </div>
+        <!--end::Details-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Button-->
+            <a asp-controller="UserManager" asp-action="Index" class="btn btn-default font-weight-bold btn-sm px-3 font-size-base">بازگشت</a>
+            <!--end::Button-->
+            <!--begin::Dropdown-->
+            <div class="btn-group ml-2">
+                <input type="submit" onclick="submitForm()" class="btn btn-success font-weight-bold btn-sm px-3 font-size-base" value="ویرایش شغل">
+            </div>
+            <!--end::Dropdown-->
+        </div>
+        <!--end::Toolbar-->
+    </div>
+</div>
+<div class="card-body p-0">
+    <!--begin::Wizard-->
+    <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="first" data-wizard-clickable="true">
+        <!--begin::Card-->
+        <div class="card card-custom card-shadowless rounded-top-0">
+            <!--begin::Body-->
+            <div class="card-body p-0">
+                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                    <div class="col-xl-12 col-xxl-10">
+                        <!--begin::Wizard Form-->
+                        <form class="form fv-plugins-bootstrap fv-plugins-framework" id="kt_form"
+                              asp-controller="JobsChart" asp-action="EditJobsChart" asp-route-Id="@Model.Id" asp-route-Level="@Model.Level" method="post">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-9">
+                                    <!--begin::Wizard Step 1-->
+                                    <div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                        <h5 class="text-dark font-weight-bold mb-10">مشخصات شغل :</h5>
+
+
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Name" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <input asp-for="Name" class="form-control form-control-solid form-control-lg" type="text">
+                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+
+                                        <!--begin::Group-->
+                                        <div class="form-group row fv-plugins-icon-container align-items-center">
+                                            <label asp-for="Description" class="col-xl-3 col-lg-3 col-form-label"></label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <textarea asp-for="Description" class="form-control form-control-solid form-control-lg"></textarea>
+                                                <span asp-validation-for="Description" class="text-danger"></span>
+                                                <div class="fv-plugins-message-container"></div>
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Wizard Form-->
+                    </div>
+                </div>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Wizard-->
+</div>
+
+@section AdminScripts
+{
+    <script type="text/javascript">
+        function submitForm() {
+            $("#kt_form").submit();
+        }
+    </script>
+}
+
+

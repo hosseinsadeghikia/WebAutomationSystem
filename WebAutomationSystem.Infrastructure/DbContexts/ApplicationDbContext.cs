@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebAutomationSystem.ApplicationCore.Entities.Jobs;
 using WebAutomationSystem.ApplicationCore.Entities.Roles;
 using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.FluentConfig.FluentEntities;
@@ -24,11 +25,14 @@ namespace WebAutomationSystem.Infrastructure.DbContexts
         //    });
         //}
 
+        public DbSet<JobsChart> JobsCharts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             // Fluent API Configurations goes in here
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new FluentApplicationUser());
+            modelBuilder.ApplyConfiguration(new FluentJobsChart());
         }
     }
 }

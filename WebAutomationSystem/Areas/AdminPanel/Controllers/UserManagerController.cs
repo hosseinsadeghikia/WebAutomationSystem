@@ -162,10 +162,8 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                return RedirectToAction("ErrorView", "Home");
-            }
+
+            return RedirectToAction("ErrorView", "Home");
         }
 
         [HttpGet]
@@ -181,6 +179,77 @@ namespace WebAutomationSystem.Areas.AdminPanel.Controllers
             var userMapped = _mapper.Map<UserDetailsDto>(user);
 
             return View(userMapped);
+        }
+
+
+        [HttpGet]
+        public IActionResult ChangeUserStatus(int userId)
+        {
+            if (userId == 0)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+            var user = _userRepository.Get(userId);
+            var userMapped = _mapper.Map<UserDetailsDto>(user);
+
+            if (userMapped.IsActive == 1)
+            {
+                //DeActive
+                ViewBag.BackgroundColor = "bg-danger";
+                ViewBag.ButtonName = "btn-danger";
+                ViewBag.Title = "غیرفعال سازی";
+                return View(userMapped);
+            }
+
+            //Active
+            ViewBag.BackgroundColor = "bg-success";
+            ViewBag.ButtonName = "btn-success";
+            ViewBag.Title = "فعال سازی";
+            return View(userMapped);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeUserStatus(int userId, byte isActive)
+        {
+            if (userId == 0)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+            var user = _userRepository.Get(userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+            try
+            {
+                if (isActive == 1)
+                {
+                    //DeActive
+                    user.IsActive = 0;
+                    _userRepository.Update(user);
+                    _userRepository.SaveChanges();
+                }
+                else
+                {
+                    //Active
+                    user.IsActive = 1;
+                    _userRepository.Update(user);
+                    _userRepository.SaveChanges();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+
+           
         }
     }
 }

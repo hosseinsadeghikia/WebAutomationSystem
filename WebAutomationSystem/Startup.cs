@@ -8,15 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutomationSystem.ApplicationCore.DTOs.JobsChart;
 using WebAutomationSystem.ApplicationCore.DTOs.Users;
+using WebAutomationSystem.ApplicationCore.Entities.Jobs;
 using WebAutomationSystem.ApplicationCore.Entities.Roles;
 using WebAutomationSystem.ApplicationCore.Entities.Users;
 using WebAutomationSystem.Infrastructure.DbContexts;
 using WebAutomationSystem.Infrastructure.FluentConfig.FluentValidationDto;
 using WebAutomationSystem.Infrastructure.Repositories.Generic;
+using WebAutomationSystem.Infrastructure.Repositories.Jobs;
 using WebAutomationSystem.Infrastructure.Repositories.Roles;
+using WebAutomationSystem.Infrastructure.Repositories.UnitOfWork;
 using WebAutomationSystem.Infrastructure.Repositories.Users;
-using WebAutomationSystem.Infrastructure.UnitOfWork;
 
 namespace WebAutomationSystem
 {
@@ -57,11 +60,14 @@ namespace WebAutomationSystem
             services.AddTransient<ApplicationDbContext>();
             services.AddTransient<IGenericRepository<ApplicationUsers>, UsersRepository>();
             services.AddTransient<IGenericRepository<ApplicationRoles>, RolesRepository>();
+            services.AddTransient<IGenericRepository<JobsChart>, JobsChartRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             #region Validator
 
             services.AddTransient<IValidator<AddUsersDto>, FluentAddUsersDto>();
+            services.AddTransient<IValidator<AddJobsChartDto>, FluentAddJobsChartDto>();
+            services.AddTransient<IValidator<EditJobsChartDto>, FluentEditJobsChartDto>();
 
             #endregion
         }

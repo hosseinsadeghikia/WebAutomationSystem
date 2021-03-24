@@ -7,6 +7,9 @@
 <div class="card card-custom">
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
+            <span class="card-icon">
+                <i class="fa fa-users text-black-50"></i>
+            </span>
             <h3 class="card-label">
                 لیست کاربران سامانه
             </h3>
@@ -121,89 +124,29 @@
                                 </td>
 
                             }
-                        <td nowrap="">
-                            <a asp-controller="UserManager" asp-action="UserDetails" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
-                                <i class="la la-list"></i>
-                            </a>
-                            <a asp-controller="UserManager" asp-action="EditUser" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
-                                <i class="la la-edit"></i>
-                            </a>
-                            @if (item.IsActive == 1)
-                            {
-                                <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="غیر فعال">
-                                    <i class="la la-user-lock"></i>
+                            <td nowrap="">
+                                <a asp-controller="UserManager" asp-action="UserDetails" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
+                                    <i class="la la-list"></i>
                                 </a>
-                            }
-                            else
-                            {
-                                <a asp-controller="UserManager" asp-action="#" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                    <i class="la la-user-check"></i>
+                                <a asp-controller="UserManager" asp-action="EditUser" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
+                                    <i class="la la-edit"></i>
                                 </a>
-                            }
-                        </td>
+                                @if (item.IsActive == 1)
+                                {
+                                    <a asp-controller="UserManager" asp-action="ChangeUserStatus" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="غیر فعال">
+                                        <i class="la la-user-lock"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="UserManager" asp-action="ChangeUserStatus" asp-route-userId="@item.Id" class="btn btn-lg btn-clean btn-icon" title="فعال">
+                                        <i class="la la-user-check"></i>
+                                    </a>
+                                }
+                            </td>
                         </tr>
                         counter++;
                     }
-                    @*<tr>
-                            <th scope="row">2</th>
-                            <td>Ana</td>
-                            <td>Jacobs</td>
-                            <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
-                            <th scope="row">2</th>
-                            <td>Ana</td>
-                            <td>
-                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                    <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                    <img class="" src="~/assets/media/users/100_5.jpg" alt="photo">
-                                </div>
-                            </td>
-                            <td><span class="label label-inline label-light-success font-weight-bold">Approved</span></td>
-                            <td nowrap="">
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
-                                    <i class="la la-list"></i>
-                                </a>
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
-                                    <i class="la la-edit"></i>
-                                </a>
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                    <i class="la la-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>Pettis</td>
-                            <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>
-                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                    <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                    <img class="" src="~/assets/media/users/100_14.jpg" alt="photo">
-                                </div>
-                            </td>
-                            <td><span class="label label-inline label-light-danger font-weight-bold">New</span></td>
-                            <td nowrap="">
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="جزئیات">
-                                    <i class="la la-list"></i>
-                                </a>
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="ویرایش">
-                                    <i class="la la-edit"></i>
-                                </a>
-                                <a href="javascript:;" class="btn btn-lg btn-clean btn-icon" title="فعال">
-                                    <i class="la la-trash"></i>
-                                </a>
-                            </td>
-                        </tr>*@
                 </tbody>
             </table>
         </div>

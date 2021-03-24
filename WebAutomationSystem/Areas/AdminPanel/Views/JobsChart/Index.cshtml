@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@section CustomStyles
+{
+    <link href="~/assets/css/plugins/custom/jstree/jstree.bundle.rtl.css" rel="stylesheet" />
+}
+<!--begin::Card-->
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <span class="card-icon">
+                <i class="flaticon2-line-chart text-black-50"></i>
+            </span>
+            <h3 class="card-label">
+                چارت مشاغل سازمانی
+            </h3>
+        </div>
+        <div class="card-toolbar d-flex justify-content-end">
+            <!--begin::Button-->
+            <a class="btn btn-primary font-weight-bolder" id="js_AddJobChart">
+                <i class="fa fa-plus"></i>
+                افزودن شغل جدید
+            </a>
+
+            <a class="btn btn-warning font-weight-bolder ml-2" id="js_EditJobChart">
+                <i class="fa fa-edit"></i>
+                ویرایش شغل
+            </a>
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body text-black-50">
+        <div class="alert alert-custom alert-info" role="alert">
+            <div class="alert-icon"><i class="flaticon-questions-circular-button"></i></div>
+            <div class="alert-text font-weight-bold"> جهت افزودن و ویرایش مشاغل ابتدا یک شغل را انتخاب نمایید!</div>
+        </div>
+
+        <div id="kt_tree_4" class="tree-demo">
+
+        </div>
+    </div>
+</div>
+<!--end::Card-->
+
+@section AdminScripts
+{
+    <script src="~/assets/js/pages/miscellaneous/jstree.bundle.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#kt_tree_4").on("changed.jstree", function(e, data) {
+                var postedItems = [];
+                var j = data.selected.length;
+                for (var i = 0; i < j; i++) {
+                    postedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.selected[i],
+                        parent: data.node.parents[0]
+                    });
+                }
+
+                if (data.selected.length) {
+                    $('#js_AddJobChart, #js_EditJobChart').click(function () {
+                        var id = postedItems[0].id;
+                        var selectedNodeName = postedItems[0].text;
+
+                        if (this.id === 'js_AddJobChart') {
+                            //Add
+                            $('#js_AddJobChart').attr("href", "/Admin/JobsChart/AddJobsChart?id=" + id +
+                                "&selectedNodeName=" + selectedNodeName);
+                        }
+                        else if (this.id === 'js_EditJobChart') {
+                            //Update
+                            $('#js_EditJobChart').attr("href", "/Admin/JobsChart/EditJobsChart?id=" + id +
+                                "&selectedNodeName=" + selectedNodeName);
+                        }
+                    });
+                }
+
+            }).jstree({
+            "core" : {
+                "themes" : {
+                    "responsive": false
+                },
+                // so that create works
+                "check_callback" : true,
+                    "data": @Html.Raw(ViewBag.JobsChart)
+            },
+            "types" : {
+                "default" : {
+                    "icon" : "fa fa-folder text-primary"
+                },
+                "file" : {
+                    "icon" : "fa fa-file  text-primary"
+                }
+            },
+            "state" : { "key" : "demo2" },
+            "plugins" : [ "contextmenu", "state", "types" ]
+            }).on("loaded.jstree", function() {
+                $.jstree.reference('#kt_tree_4').open_all();
+            });
+        });
+    </script>
+}
